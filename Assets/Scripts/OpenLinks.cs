@@ -3,18 +3,19 @@ using UnityEngine.EventSystems;
 
 public class OpenLinks : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
-    [SerializeField] private string url; // Поле, доступное в инспекторе
+    public string url;
 
-    // Размеры объекта
     private Vector3 originalScale;
-    public Vector3 pressedScale = new Vector3(0.65f, 0.65f, 0.65f); // Уменьшенный размер
+    private Vector3 pressedScale = new Vector3(0.9f, 0.9f, 0.9f);
+
+    private bool isPointerInside = true; // Флаг, отслеживающий положение указателя
 
     private void Start()
     {
-        originalScale = transform.localScale; // Сохраняем оригинальный размер
+        originalScale = transform.localScale;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OpenUrl()
     {
         if (!string.IsNullOrEmpty(url))
         {
@@ -24,19 +25,27 @@ public class OpenLinks : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // Уменьшаем размер объекта
+        // Уменьшаем объект и отмечаем, что указатель внутри
         transform.localScale = pressedScale;
+        isPointerInside = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        // Возвращаем размер объекта обратно
+        // Возвращаем объект в исходное состояние
         transform.localScale = originalScale;
+
+        // Открываем ссылку только если указатель внутри объекта
+        if (isPointerInside)
+        {
+            OpenUrl();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // Если указатель выходит за пределы объекта, возвращаем размер
+        // Отмечаем, что указатель вышел за пределы объекта
+        isPointerInside = false;
         transform.localScale = originalScale;
     }
 }

@@ -18,7 +18,7 @@ public class FurniturePanel : MonoBehaviour
     public GameObject panel;
     public ScrollRect scrollRect;
     public GameObject descriptionObject;
-    //private Sprite defaultSprite;
+    public Button closePanel;
 
     private TextMeshProUGUI descriptionText;
     private Image descriptionImage;
@@ -34,6 +34,10 @@ public class FurniturePanel : MonoBehaviour
 
     void Awake()
     {
+        closePanel.onClick.AddListener(HidePanel);
+        closePanel.GetComponentInChildren<TextMeshProUGUI>().text = LocalizationManager.GetText("close");
+
+
         if (Instance == null)
         {
             Instance = this;

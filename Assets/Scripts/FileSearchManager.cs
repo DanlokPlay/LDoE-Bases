@@ -14,18 +14,16 @@ public class FileSearchManager : MonoBehaviour
     public GameObject mainCanvas;
     public GameObject infoCanvas;
     public GameObject aboutCanvas;
-    public GameObject donationCanvas;
     public Text numbersOfBases;
     public Text nameOfBase;
+    public Text Base;
     public Text noResultsText;
     public Button previousButton;
-    public Button showContentButton;
+    public Button viewButton;
     public Button nextButton;
     public Button backButton;
     public Button aboutButton;
     public Button closeAboutButton;
-    public Button shopButton;
-    public Button backFromShopButton;
     public Button exitButton;
 
     public GameObject loadingScreen;
@@ -37,15 +35,19 @@ public class FileSearchManager : MonoBehaviour
 
 
     public Text faqContentText;
-    //private static bool hasReadInstruction = false;
 
 
-    // Кнопка для смены языка
+
     public Button changeLanguageButton;
-    // UI элементы для флагов
-    public Image languageFlag; // UI элемент, отображающий флаг
-    public Sprite flagRu;      // Спрайт для флага России
-    public Sprite flagEn;      // Спрайт для флага США
+
+    public Image languageFlag;
+    public Sprite flagRu;
+    public Sprite flagEn;
+
+    public Text botInfo;
+    public Text chat;
+    public Text checkUpdates;
+    public Text donationText;
 
 
 
@@ -53,31 +55,24 @@ public class FileSearchManager : MonoBehaviour
     private int currentIndex = -1;
     private ExitConfirmation exitConfirmation;
 
-   // public Text exitQuestion;
-   // public Text yesButton;
-   // public Text noButton;
-
     void Start()
     {
         BetterStreamingAssets.Initialize();
 
         searchButton.onClick.AddListener(OnSearchButtonClicked);
         previousButton.onClick.AddListener(OnPreviousButtonClicked);
-        showContentButton.onClick.AddListener(OnShowContentButtonClicked);
+        viewButton.onClick.AddListener(OnShowContentButtonClicked);
         nextButton.onClick.AddListener(OnNextButtonClicked);
         backButton.onClick.AddListener(OnBackButtonClicked);
         aboutButton.onClick.AddListener(OnAboutButtonClicked);
         closeAboutButton.onClick.AddListener(OnCloseAboutButtonClicked);
         faqButton.onClick.AddListener(OnFaqButtonClicked);
         closeFaqButton.onClick.AddListener(OnCloseFaqButtonClicked);
-        shopButton.onClick.AddListener(OnShopButtonClicked);
-        backFromShopButton.onClick.AddListener(OnBackFromShopButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
 
         infoCanvas.SetActive(false);
         aboutCanvas.SetActive(false);
         faqCanvas.SetActive(false);
-        donationCanvas.SetActive(false);
         noResultsText.gameObject.SetActive(false);
 
         exitConfirmation = FindFirstObjectByType<ExitConfirmation>();
@@ -113,6 +108,17 @@ public class FileSearchManager : MonoBehaviour
         faqContentText.text = LocalizationManager.GetText("faqText");
         searchButton.GetComponentInChildren<Text>().text = LocalizationManager.GetText("searchButton");
         placeholderText.text = LocalizationManager.GetText("searchPlaceholder");
+
+        botInfo.text = LocalizationManager.GetText("botInfo");
+        chat.text = LocalizationManager.GetText("chat");
+        checkUpdates.text = LocalizationManager.GetText("checkUpdates");
+
+        previousButton.GetComponentInChildren<Text>().text = LocalizationManager.GetText("previous");
+        viewButton.GetComponentInChildren<Text>().text = LocalizationManager.GetText("view");
+        nextButton.GetComponentInChildren<Text>().text = LocalizationManager.GetText("next");
+
+        donationText.text = LocalizationManager.GetText("donationText");
+
         // Обновляем текст только если он активен
         if (noResultsText.gameObject.activeSelf)
         {
@@ -199,18 +205,6 @@ public class FileSearchManager : MonoBehaviour
 
 
         GameData.LastActiveCanvas = null;
-    }
-
-    void OnShopButtonClicked()
-    {
-        mainCanvas.SetActive(false);
-        donationCanvas.SetActive(true);
-    }
-
-    void OnBackFromShopButtonClicked()
-    {
-        donationCanvas.SetActive(false);
-        mainCanvas.SetActive(true);
     }
 
     void OnSearchButtonClicked()
@@ -324,7 +318,8 @@ public class FileSearchManager : MonoBehaviour
             fileName = Regex.Replace(fileName, @"^REG\{\d+\}_", "");
 
             // Отображаем имя файла без маркера
-            nameOfBase.text = string.Format(LocalizationManager.GetText("exactBaseName"), fileName);
+            nameOfBase.text = LocalizationManager.GetText("exactBaseName");
+            Base.text = fileName;
         }
     }
 

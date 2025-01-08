@@ -7,11 +7,6 @@ using static GameData;
 
 public class SpriteSpawner : MonoBehaviour
 {
-    //public GameObject chestHomeEnemyPrefab;
-    //public GameObject generalFurniturePrefab;
-    //public GameObject dragBoxPrefab;
-    //public GameObject motorcyclePrefab;
-
     public SpriteAtlas groundsAtlas;
     public SpriteAtlas buildingSiteAtlas;
 
@@ -380,7 +375,7 @@ public class SpriteSpawner : MonoBehaviour
         if (sprite == null) return;
 
         var rotationQuat = GetFurnitureRotation(descriptionId, rotation);
-        var positionData = GetFurniturePosition(descriptionId, x, y);
+        var positionData = GetFurniturePosition(descriptionId, x, y, rotation);
         var position = positionData.position;
         var scale = positionData.scale;
 
@@ -407,7 +402,7 @@ public class SpriteSpawner : MonoBehaviour
         }
     }
 
-    (Vector3 position, Vector3 scale) GetFurniturePosition(string descriptionId, int x, int y)
+    (Vector3 position, Vector3 scale) GetFurniturePosition(string descriptionId, int x, int y, int rotation)
     {
         Vector3 position;
         Vector3 scale = new Vector3(1.75f, 1.75f, 1f); // Общий размер для всех спрайтов
@@ -427,8 +422,28 @@ public class SpriteSpawner : MonoBehaviour
                 scale = new Vector3(3.75f, 3.75f, 1f); // Специальный размер, если нужно
                 break;
             case var id when new[] { "workbench_gunsmith_enemy", "buildingsite_gunsmith" }.Contains(id):
-                position = new Vector3(x + 1f, y + 1f, -3);
-                scale = new Vector3(3.75f, 3.75f, 1f); // Специальный размер, если нужно
+                switch (rotation)
+                {
+                    case 0:
+                        position = new Vector3(x + 1f, y + 2f, -3);
+                        scale = new Vector3(3.75f, 1.75f, 1f);
+                        break;
+                    case 1:
+                        position = new Vector3(x + 2f, y + 1f, -3);
+                        scale = new Vector3(3.75f, 1.75f, 1f);
+                        break;
+                    case 2:
+                        position = new Vector3(x + 1f, y + 0f, -3);
+                        scale = new Vector3(3.75f, 1.75f, 1f);
+                        break;
+                    case 3:
+                        position = new Vector3(x + 0f, y + 1f, -3);
+                        scale = new Vector3(3.75f, 1.75f, 1f);
+                        break;
+                    default:
+                        position = new Vector3(x + 1f, y + 1f, -3);
+                        break;
+                }
                 break;
             default:
                 position = new Vector3(x, y, -3);

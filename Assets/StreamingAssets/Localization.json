@@ -3,7 +3,7 @@
     "ru": {
       "noResults": "База не найдена :( Прочитайте FAQ",
       "foundBases": "Найдено баз с таким названием: {0}",
-      "exactBaseName": "Точное название: {0}",
+      "exactBaseName": "Название базы:",
       "searchButton": "Поиск",
       "searchPlaceholder": "Введите название базы",
       "exitQuestion": "Выйти из приложения?",
@@ -20,15 +20,22 @@
       "color": "Цвет",
       "rotation": "Поворот",
       "fuel":"Топливо",
+      "chat":"Чат по игре",
+      "botInfo":"Бот с полезной информацией по игре (Коды, фото и видео)",
+      "checkUpdates":"Проверить обновления:",
+      "close":"Закрыть",
+      "previous":"Предыдущая",
+      "view":"Просмотреть",
+      "next":"Следующая",
 
 
-
+      "donationText":"Это приложение было разработано одним человеком, и оно полностью бесплатное и без рекламы, чтобы предоставить удобный и чистый интерфейс. Если вам нравится приложение и вы хотите поддержать разработчика, можете сделать пожертвование. Это поможет улучшить приложение и продолжать его развитие :D",
        "faqText": "\n                                              <b>Немного полезной информации xD</b>\n\n<b><color=#3dfff5>    - Ввод названия базы можно в любом регистре.</color></b>\n Например, если ввести <color=#ffcb21>ghost</color>, то найдётся <color=#ffcb21>Ghost</color> и <color=#ffcb21>ghost</color> - это считается как разные базы! Нужно смотреть базу с таким названием, какая в игре!\n\n<b><color=#3dfff5>    - Может быть несколько вариаций баз.</color></b>\n Например, <color=#ffcb21>Player5929</color>, <color=#ffcb21>Player5929_1</color>, <color=#ffcb21>Player5929_2</color>. Какая именно будет - неизвестно. Чисто в теории, последняя вариация должна быть правильной, навсякий случай можно в Ютубе посмотреть самое новое видео с рейдом этой базы.\n\n <b><color=#3dfff5>    - Программа не является читом, взломом, сторонним приложением.</color></b>\n Приложение работает автономно от основной игры и с ней не как не связана.\n\n<b><color=#3dfff5>    - Специальные маркеры, которое вводятся в поле ввода:</color></b>\n\n    <b><color=red>chinese</color></b> - Список баз которые имеют китайские, корейские и т.п. символы\n\n    <b><color=red>empty</color></b> - Список баз без названия.\n Единственое что можно сделать, это зайти на базу, посмотреть внешнее строение, найти в приложении и потом подготовиться к рейду. Главное при первой загрузке ничего не трогать и не издавать шума, а при втором заходе, когда подготовишься - не умирать!\n\n    <b><color=red>combo</color></b> - Список баз у которых могут отсутствовать символы.\n По аналогии с empty, только полностью без названия а тут несколько символов таких. \n    Вот список таких баз, где % - 1 пустой символ: \n    <color=#ffcb21>%hou%%, %sao%, Cc%%%, Hero%W, Mean%, Player%%%, SKY%1, TangHua%%</color>\n\n   <b><color=red>duplicate</color></b> - Список баз, которые являются дупликатами (полностью совпадают, но при этом несколько файлов с этими базами). В теории шанс на эти базы повыше :D\n\n    <b><color=red>english</color></b> - Список баз на аглийском языке\n\n    <b><color=red>number</color></b> - Список баз, состоящие из наборов цифр\n\n    <b><color=red>other</color></b> - Список баз, имеющие всякие сложные закорючки xD\n\n    <b><color=red>players</color></b> - Список баз, начинающихся с Player\n\n    <b><color=red>russian</color></b> - Список баз на русском языке\n\n    <b><color=red>special</color></b> - Список баз, которые содержат в названии: <color=red>< > : \" / \\ | ? *</color>. Они заменяются на <color=red>=</color>. Можете вводить как и эти спец. символы так и знак <color=red>=</color>.\n\n<b><color=#3dfff5>    - Лут может не совпасть, если идёте на антирейд и вещи с базы были украдены.</color></b>\n Лут который у вас украли рандомно распределяется между всеми сундуками. Также некоторые игроки говорят, что начальный лут который лежит на базе противника может заменится на тот, который был украден.\n\n<b><color=#3dfff5>    - Если не находится база, и при этом точно уверены, что название введено правильно, то тогда смотреть на Ютубе.</color></b>\n Скорее вышли новые базы, которых в приложении нет. Разработчик попытается обновить/добавить базы :) P.S. Судя по данным, базы для рейдов обновлялись последний раз в версии 1.16.3\n\n<b><color=#3dfff5>    - Если нет иконок у предметов, странные названия, то писать разрабочику.</color></b>\n В даннах инцидентах лучше всего доверять названию предмета +- оно будет на английском\n\n\n                                                        <b>УДАЧНЫХ РЕЙДОВ! :D</b>\n"
     },
     "en": {
       "noResults": "No results found :( Please read the FAQ",
       "foundBases": "Found bases with this name: {0}",
-      "exactBaseName": "Exact name: {0}",
+      "exactBaseName": "Base name:",
       "searchButton": "Search",
       "searchPlaceholder": "Enter the name of the raid base",
       "exitQuestion": "Exit the application?",
@@ -45,9 +52,16 @@
       "color": "Color",
       "rotation": "Rotation",
       "fuel":"Fuel",
+      "chat":"Game chat",
+      "botInfo":"A bot with useful information about the game (codes, photos, and videos)",
+      "checkUpdates":"Check for updates:",
+      "close":"Close",
+      "previous":"Previous",
+      "view":"View",
+      "next":"Next",
 
 
-
+      "donationText":"This app was developed by a single person, and it is completely free and ad-free to provide you with a clean and convenient interface. If you like the app and would like to support the developer, you can make a donation. This will help improve the app and continue its development :D",
       "faqText": "\n                                                 <b>A bit of useful information xD</b>\n\n<b><color=#3dfff5>    - Base name can be entered in any case.</color></b>\n For example, if you enter <color=#ffcb21>ghost</color>, it will find <color=#ffcb21>Ghost</color> and <color=#ffcb21>ghost</color> - these are considered as different bases! You need to check the base with that name in the game!\n\n<b><color=#3dfff5>    - There can be several variations of bases.</color></b>\n For example, <color=#ffcb21>Player5929</color>, <color=#ffcb21>Player5929_1</color>, <color=#ffcb21>Player5929_2</color>. Which one is the correct one is unknown. In theory, the last variation should be correct, but just in case, you can check the latest video on YouTube for the raid of this base.\n\n <b><color=#3dfff5>    - The program is not a cheat, hack, or third-party app.</color></b>\n The app works independently from the main game and is not connected to it in any way.\n\n<b><color=#3dfff5>    - Special markers that can be entered into the input field:</color></b>\n\n    <b><color=red>chinese</color></b> - A list of bases that have Chinese, Korean, etc. characters\n\n    <b><color=red>empty</color></b> - A list of bases without a name.\n The only thing you can do is visit the base, check its external structure, find it in the app, and then prepare for the raid. The key is not to touch anything and not make noise on the first load, and on the second visit, when you’re prepared – don’t die!\n\n    <b><color=red>combo</color></b> - A list of bases where symbols may be missing.\n Similar to empty, but these bases are completely nameless, and here several symbols are missing. \n    Here’s a list of such bases, where % is 1 empty symbol: \n    <color=#ffcb21>%hou%%, %sao%, Cc%%%, Hero%W, Mean%, Player%%%, SKY%1, TangHua%%</color>\n\n   <b><color=red>duplicate</color></b> - A list of bases that are duplicates (completely identical, but there are several files with these bases). In theory, the chance of finding these bases is higher :D\n\n    <b><color=red>english</color></b> - A list of bases in English\n\n    <b><color=red>number</color></b> - A list of bases consisting of sets of numbers\n\n    <b><color=red>other</color></b> - A list of bases with various complicated symbols xD\n\n    <b><color=red>players</color></b> - A list of bases starting with Player\n\n    <b><color=red>russian</color></b> - A list of bases in Russian\n\n    <b><color=red>special</color></b> - A list of bases that contain in their name: <color=red>< > : \" / \\ | ? *</color>. These are replaced with <color=red>=</color>. You can enter these special symbols or the <color=red>=</color> sign. \n\n<b><color=#3dfff5>    - Loot might not match if you go on an anti-raid and items from your base were stolen.</color></b>\n Stolen loot is randomly distributed among all chests. Additionally, some players report that the initial loot on the enemy base might be replaced with the stolen loot.\n\n<b><color=#3dfff5>    - If no base is found, and you are sure the name is entered correctly, check on YouTube.</color></b>\n Most likely, new bases have been added that are not in the app yet. The developer will try to update/add the bases :) P.S. According to the data, raid bases were last updated in version 1.16.3.\n\n<b><color=#3dfff5>    - If there are no icons for items or strange names, contact the developer.</color></b>\n In such cases, it’s best to trust the item name, which will be in English most of the time.\n\n\n                                                        <b>HAPPY RAIDING! :D</b>\n"
     }
   }

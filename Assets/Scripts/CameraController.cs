@@ -32,14 +32,26 @@ public class CameraController : MonoBehaviour
     private bool _isDragging;
     private bool _isDraggingFromUI;
 
+    private Image infoImage;
+
     void Start()
     {
-
         // Загружаем локализацию
         LocalizationManager.LoadLocalization();
 
         // Устанавливаем текущий язык
         LocalizationManager.CurrentLanguage = Data.CurrentLanguage;
+
+        infoImage = infoCanvas.transform.Find("InfoGWDW").GetComponent<Image>();
+        if (infoImage != null)
+        {
+            string imageName = Data.CurrentLanguage == "ru" ? "InfoGWDW_ru" : "InfoGWDW_en";
+            Sprite infoSprite = UnityEngine.Resources.Load<Sprite>(imageName);
+            if (infoSprite != null)
+            {
+                infoImage.sprite = infoSprite;
+            }
+        }
 
         // Пример использования
         changeSceneButton.onClick.AddListener(ChangeScene);
