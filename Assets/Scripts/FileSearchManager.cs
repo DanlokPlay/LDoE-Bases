@@ -48,6 +48,7 @@ public class FileSearchManager : MonoBehaviour
     public Text chat;
     public Text checkUpdates;
     public Text donationText;
+    public Text language;
 
 
 
@@ -118,6 +119,7 @@ public class FileSearchManager : MonoBehaviour
         nextButton.GetComponentInChildren<Text>().text = LocalizationManager.GetText("next");
 
         donationText.text = LocalizationManager.GetText("donationText");
+        language.text = LocalizationManager.GetText("language");
 
         // Обновляем текст только если он активен
         if (noResultsText.gameObject.activeSelf)
