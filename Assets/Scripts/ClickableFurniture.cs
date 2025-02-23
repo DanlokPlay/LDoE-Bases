@@ -10,7 +10,6 @@ public class ClickableFurniture : MonoBehaviour
     public GameData.WallData WallData { get; set; }
 
     public Vector2 InitialTouchPosition { get; private set; }
-    public float SwipeThreshold => 25f;
 
     private Color originalColor;
     private Renderer objectRenderer;
@@ -30,7 +29,7 @@ public class ClickableFurniture : MonoBehaviour
 
     public void OnTouchBegan()
     {
-        InitialTouchPosition = Input.mousePosition;  // Сохраняем начальную позицию касания
+        InitialTouchPosition = Input.mousePosition;
     }
 
     public void OnTouchEnded()
@@ -70,7 +69,7 @@ public class ClickableFurniture : MonoBehaviour
             currentActiveObject.ResetColor();
         }
 
-        currentActiveObject = this;  // Устанавливаем текущий активный объект
+        currentActiveObject = this;
         objectRenderer.material.color = highlightColorAfterClick;
     }
 

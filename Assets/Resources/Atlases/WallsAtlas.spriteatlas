@@ -26,7 +26,7 @@ SpriteAtlas:
       m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
-      m_TextureCompression: 0
+      m_TextureCompression: 3
       m_CompressionQuality: 50
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
@@ -50,6 +50,11 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 868de59fcacf3aa488894e89d4355c6c, type: 3}
     - {fileID: 2800000, guid: 72e9cc7da2ae62b40bceab08dac2db7c, type: 3}
     - {fileID: 2800000, guid: 28be348b972e82245ae4ccee79a8be30, type: 3}
+    - {fileID: 2800000, guid: a6f31f3c3940c5a45863f46d17de8082, type: 3}
+    - {fileID: 2800000, guid: 52680d8504a8c3e4c9fc80871e88c416, type: 3}
+    - {fileID: 2800000, guid: b49ee31295f835c4d825869072c736e7, type: 3}
+    - {fileID: 2800000, guid: 430dd70f708c8d1438d9660c3601ec7b, type: 3}
+    - {fileID: 2800000, guid: 3ce6369a0662b0049b12ae40a7df2e20, type: 3}
     - {fileID: 2800000, guid: 3c57317ab378f8f40894fe04d23f8bcb, type: 3}
     - {fileID: 2800000, guid: e5d8043b7b7a36c4893e37360261db1c, type: 3}
     - {fileID: 2800000, guid: 4ed9474bde236d64b8b606ea8486c24e, type: 3}
@@ -68,16 +73,21 @@ SpriteAtlas:
     - 72375d306279f57419feb60cbb9d2169: 21300000
     - e94d6b81b65fba54dae112012ad4da01: 21300000
     - fd769db195b46a74aa69afa91afa044d: 21300000
+    - b49ee31295f835c4d825869072c736e7: 21300000
     - e39371b4bab999340a09fea6cc6c85bd: 21300000
     - 0ddffef419b2b4b4185c462136bf1677: 21300000
+    - 52680d8504a8c3e4c9fc80871e88c416: 21300000
     - e7bfd9b8be02e004e83bb809a5421bee: 21300000
     - 3c57317ab378f8f40894fe04d23f8bcb: 21300000
+    - 3ce6369a0662b0049b12ae40a7df2e20: 21300000
     - e5d8043b7b7a36c4893e37360261db1c: 21300000
     - 012a943b2a775ac469cfcb812edee4fe: 21300000
     - 4ed9474bde236d64b8b606ea8486c24e: 21300000
     - 28be348b972e82245ae4ccee79a8be30: 21300000
     - a29ff29b37bec184e86a411f31e3ebc4: 21300000
+    - a6f31f3c3940c5a45863f46d17de8082: 21300000
     - 72e9cc7da2ae62b40bceab08dac2db7c: 21300000
+    - 430dd70f708c8d1438d9660c3601ec7b: 21300000
     - 868de59fcacf3aa488894e89d4355c6c: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -85,32 +95,42 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 72375d306279f57419feb60cbb9d2169, type: 3}
   - {fileID: 21300000, guid: e94d6b81b65fba54dae112012ad4da01, type: 3}
   - {fileID: 21300000, guid: fd769db195b46a74aa69afa91afa044d, type: 3}
+  - {fileID: 21300000, guid: b49ee31295f835c4d825869072c736e7, type: 3}
   - {fileID: 21300000, guid: e39371b4bab999340a09fea6cc6c85bd, type: 3}
   - {fileID: 21300000, guid: 0ddffef419b2b4b4185c462136bf1677, type: 3}
+  - {fileID: 21300000, guid: 52680d8504a8c3e4c9fc80871e88c416, type: 3}
   - {fileID: 21300000, guid: e7bfd9b8be02e004e83bb809a5421bee, type: 3}
   - {fileID: 21300000, guid: 3c57317ab378f8f40894fe04d23f8bcb, type: 3}
+  - {fileID: 21300000, guid: 3ce6369a0662b0049b12ae40a7df2e20, type: 3}
   - {fileID: 21300000, guid: e5d8043b7b7a36c4893e37360261db1c, type: 3}
   - {fileID: 21300000, guid: 012a943b2a775ac469cfcb812edee4fe, type: 3}
   - {fileID: 21300000, guid: 4ed9474bde236d64b8b606ea8486c24e, type: 3}
   - {fileID: 21300000, guid: 28be348b972e82245ae4ccee79a8be30, type: 3}
   - {fileID: 21300000, guid: a29ff29b37bec184e86a411f31e3ebc4, type: 3}
+  - {fileID: 21300000, guid: a6f31f3c3940c5a45863f46d17de8082, type: 3}
   - {fileID: 21300000, guid: 72e9cc7da2ae62b40bceab08dac2db7c, type: 3}
+  - {fileID: 21300000, guid: 430dd70f708c8d1438d9660c3601ec7b, type: 3}
   - {fileID: 21300000, guid: 868de59fcacf3aa488894e89d4355c6c, type: 3}
   m_PackedSpriteNamesToIndex:
   - window2
   - window1
   - window4
   - simple3
+  - floor2
   - door0
   - window0
+  - floor1
   - window3
   - simple0
+  - floor4
   - simple1
   - door1
   - simple2
   - door4
   - simple4
+  - floor0
   - door3
+  - floor3
   - door2
   m_RenderDataMap: {}
   m_Tag: WallsAtlas

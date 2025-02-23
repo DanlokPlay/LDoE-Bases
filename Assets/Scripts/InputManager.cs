@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private ClickableFurniture activeObject;  // Хранит текущий активный объект
+    private ClickableFurniture activeObject;
+    public float swipeThreshold = 25f;
 
     void Update()
     {
@@ -80,7 +81,7 @@ public class InputManager : MonoBehaviour
         if (activeObject != null)
         {
             float distance = Vector2.Distance(activeObject.InitialTouchPosition, position);
-            if (distance < activeObject.SwipeThreshold)
+            if (distance < swipeThreshold)  // Используем порог из InputManager
             {
                 activeObject.OnTouchEnded();  // Вызываем метод окончания касания
             }

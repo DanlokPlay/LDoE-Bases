@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -131,6 +133,18 @@ public class FileSearchManager : MonoBehaviour
         UpdateFlag();
     }
 
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            FixInputField();
+        }
+    }
+
+    private void FixInputField()
+    {
+        fileNameInputField.DeactivateInputField();
+    }
 
     void UpdateFlag()
     {
@@ -242,34 +256,36 @@ public class FileSearchManager : MonoBehaviour
         UpdateResultCanvas();
     }
 
+    
+
     void SearchFilesWithPattern(string pattern)
     {
         string[] directories = new string[]
         {
-            "DataOfBases/chinese",
-            "DataOfBases/combo",
-            //"DataOfBases/duplicate",  -- Убрать ненужные повторы
-            "DataOfBases/empty",
-            "DataOfBases/english",
-            "DataOfBases/number",
-            "DataOfBases/other",
-            "DataOfBases/players",
-            "DataOfBases/russian",
-            "DataOfBases/special"
+        "DataOfBases/chinese",
+        "DataOfBases/combo",
+        //"DataOfBases/duplicate",  -- Убрать ненужные повторы
+        "DataOfBases/empty",
+        "DataOfBases/english",
+        "DataOfBases/number",
+        "DataOfBases/other",
+        "DataOfBases/players",
+        "DataOfBases/russian",
+        "DataOfBases/special"
         };
 
         string lowerPattern = pattern.ToLower();
 
         foreach (string directory in directories)
         {
-            string[] jsonFiles = BetterStreamingAssets.GetFiles(directory, "*.json");
-            foreach (string filePath in jsonFiles)
+            string[] compressedFiles = BetterStreamingAssets.GetFiles(directory, "*.json.gz.bytes");
+            foreach (string filePath in compressedFiles)
             {
-                string fileName = Path.GetFileNameWithoutExtension(filePath).Replace(" ", "");
+                string fileName = Path.GetFileName(filePath).Replace(" ", "").ToLower();
 
-                fileName = Regex.Replace(fileName, @"^REG\{\d+\}_", "").ToLower();
+                fileName = Regex.Replace(fileName, @"^REG\{\d+\}_", "", RegexOptions.IgnoreCase);
 
-                if (fileName.StartsWith(lowerPattern) && Regex.IsMatch(fileName, $@"^{Regex.Escape(lowerPattern)}(_\d+)?$", RegexOptions.IgnoreCase))
+                if (fileName.StartsWith(lowerPattern) && Regex.IsMatch(fileName, $@"^{Regex.Escape(lowerPattern)}(_\d+)?\.json\.gz\.bytes$", RegexOptions.IgnoreCase))
                 {
                     foundFiles.Add(filePath);
                 }
@@ -280,7 +296,7 @@ public class FileSearchManager : MonoBehaviour
     void SearchFilesFromSpecificFolder(string pattern)
     {
         string directory = $"DataOfBases/{pattern}";
-        string[] jsonFiles = BetterStreamingAssets.GetFiles(directory, "*.json");
+        string[] jsonFiles = BetterStreamingAssets.GetFiles(directory, "*.json.gz.bytes");
 
         foreach (string filePath in jsonFiles)
         {
@@ -313,13 +329,16 @@ public class FileSearchManager : MonoBehaviour
         {
             numbersOfBases.text = string.Format(LocalizationManager.GetText("foundBases"), foundFiles.Count);
 
-            // Получаем имя файла без расширения
-            string fileName = Path.GetFileNameWithoutExtension(foundFiles[currentIndex]);
+            // Получаем имя файла
+            string fileName = Path.GetFileName(foundFiles[currentIndex]);
 
             // Убираем маркер REG{число}_ (если он есть)
             fileName = Regex.Replace(fileName, @"^REG\{\d+\}_", "");
 
-            // Отображаем имя файла без маркера
+            // Убираем расширения ".json.gz.bytes"
+            fileName = Regex.Replace(fileName, @"\.json\.gz\.bytes$", "", RegexOptions.IgnoreCase);
+
+            // Отображаем имя файла без лишних расширений
             nameOfBase.text = LocalizationManager.GetText("exactBaseName");
             Base.text = fileName;
         }
@@ -374,7 +393,9 @@ public class FileSearchManager : MonoBehaviour
         string currentLanguage = Data.CurrentLanguage;
 
         GameData.FilePath = foundFiles[currentIndex];
-        GameData.FileData = BetterStreamingAssets.ReadAllText(GameData.FilePath);
+
+        // Читаем сжатый JSON
+        GameData.FileData = ReadCompressedJson(GameData.FilePath);
 
         ProcessContent<ResourceObjectsFind>(currentLanguage);
         ProcessContent<ChestEnemyLoot>();
@@ -415,6 +436,37 @@ public class FileSearchManager : MonoBehaviour
             yield return null;
         }
     }
+
+    string ReadCompressedJson(string filePath)
+    {
+        if (!BetterStreamingAssets.FileExists(filePath))
+        {
+            Debug.LogError($"Файл {filePath} не найден в StreamingAssets!");
+            return null;
+        }
+
+        try
+        {
+            using (Stream fileStream = BetterStreamingAssets.OpenRead(filePath))
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                fileStream.CopyTo(memoryStream);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+
+                using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+                using (StreamReader reader = new StreamReader(gzipStream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Ошибка при чтении {filePath}: {e}");
+            return null;
+        }
+    }
+
 
     void OnBackButtonClicked()
     {

@@ -103,41 +103,44 @@ public static class GameData
 public static class Data
 {
     public static string CurrentLanguage = "ru"; // Значение по умолчанию - русский
+    public static string LastBaseName = ""; // Последнее введённое название базы
 
     private static readonly string filePath = Path.Combine(Application.persistentDataPath, "Data.json");
 
     // Метод для загрузки данных
     public static void LoadData()
     {
-        // Проверяем существует ли файл
         if (File.Exists(filePath))
         {
             string jsonContent = File.ReadAllText(filePath);
             if (!string.IsNullOrEmpty(jsonContent))
             {
-                // Если файл не пустой, загружаем данные
                 var dataSave = JsonUtility.FromJson<DataSave>(jsonContent);
-                if (dataSave != null && !string.IsNullOrEmpty(dataSave.CurrentLanguage))
+                if (dataSave != null)
                 {
-                    CurrentLanguage = dataSave.CurrentLanguage; // Обновляем статическое поле
+                    if (!string.IsNullOrEmpty(dataSave.CurrentLanguage))
+                        CurrentLanguage = dataSave.CurrentLanguage;
+
+                    if (!string.IsNullOrEmpty(dataSave.LastBaseName))
+                        LastBaseName = dataSave.LastBaseName;
                 }
             }
         }
         else
         {
-            // Если файл не существует, сохраняем данные с текущим языком по умолчанию
-            SaveData();
+            SaveData(); // Если файла нет, создаём его с дефолтными значениями
         }
     }
 
     // Метод для сохранения данных
     public static void SaveData()
     {
-        // Создаем объект DataSave вручную и присваиваем значения
-        DataSave dataSave = new DataSave();
-        dataSave.CurrentLanguage = CurrentLanguage;
+        DataSave dataSave = new DataSave
+        {
+            CurrentLanguage = CurrentLanguage,
+            LastBaseName = LastBaseName
+        };
 
-        // Сохраняем данные в JSON
         string jsonContent = JsonUtility.ToJson(dataSave);
         File.WriteAllText(filePath, jsonContent);
     }
@@ -147,5 +150,6 @@ public static class Data
     public class DataSave
     {
         public string CurrentLanguage;
+        public string LastBaseName;
     }
 }

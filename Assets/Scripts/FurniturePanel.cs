@@ -28,7 +28,6 @@ public class FurniturePanel : MonoBehaviour
 
     public Button showInfoButton;
 
-    public SpriteAtlas buildingSiteAtlas;
     public SpriteAtlas itemsAtlas;
     public SpriteAtlas wallsAtlas;
 
@@ -137,7 +136,7 @@ public class FurniturePanel : MonoBehaviour
         rotationText.text = $"{LocalizationManager.GetText("rotation")}: {furnitureData.Rotation}";
 
         // Загрузка спрайта из атласа
-        Sprite descriptionSprite = buildingSiteAtlas.GetSprite(furnitureData.DescriptionId);
+        Sprite descriptionSprite = itemsAtlas.GetSprite(furnitureData.DescriptionId);
         if (descriptionSprite != null)
         {
             descriptionImage.sprite = descriptionSprite;
@@ -254,7 +253,7 @@ public class FurniturePanel : MonoBehaviour
         string descriptionIdTranslation = GetTranslation(chestEnemyData.DescriptionId);
         descriptionText.text = descriptionIdTranslation;
 
-        Sprite descriptionSprite = buildingSiteAtlas.GetSprite(chestEnemyData.DescriptionId);
+        Sprite descriptionSprite = itemsAtlas.GetSprite(chestEnemyData.DescriptionId);
         if (descriptionSprite != null)
         {
             descriptionImage.sprite = descriptionSprite;
@@ -366,7 +365,7 @@ public class FurniturePanel : MonoBehaviour
         string descriptionIdTranslation = GetTranslation(dragBoxObjectData.DescriptionId);
         descriptionText.text = descriptionIdTranslation;
 
-        Sprite descriptionSprite = buildingSiteAtlas.GetSprite(dragBoxObjectData.DescriptionId);
+        Sprite descriptionSprite = itemsAtlas.GetSprite(dragBoxObjectData.DescriptionId);
         if (descriptionSprite != null)
         {
             descriptionImage.sprite = descriptionSprite;
@@ -395,10 +394,10 @@ public class FurniturePanel : MonoBehaviour
     {
         ShowPanel();
 
-        string descriptionIdTranslation = GetTranslation("chopper");
+        string descriptionIdTranslation = GetTranslation("motorcycle");
         descriptionText.text = descriptionIdTranslation;
 
-        Sprite descriptionSprite = buildingSiteAtlas.GetSprite("chopper");
+        Sprite descriptionSprite = itemsAtlas.GetSprite("motorcycle");
         if (descriptionSprite != null)
         {
             descriptionImage.sprite = descriptionSprite;

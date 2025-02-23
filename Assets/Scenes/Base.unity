@@ -451,7 +451,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 727242725}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 2
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -983,7 +983,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 35
+  far clip plane: 10
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -1011,7 +1011,7 @@ Transform:
   m_GameObject: {fileID: 727242723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -30}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundsAtlas: {fileID: 4343727234628468602, guid: 06639ffa53c27a9458b7c1ef3201a133, type: 2}
-  buildingSiteAtlas: {fileID: 4343727234628468602, guid: 4387390ac9f601c489360e31adf7164f, type: 2}
+  itemsAtlas: {fileID: 4343727234628468602, guid: 809d6a8720e8f364d86e8d443d1bc887, type: 2}
 --- !u!114 &727242730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1078,7 +1078,6 @@ MonoBehaviour:
   descriptionObject: {fileID: 753329790}
   closePanel: {fileID: 1680046156}
   showInfoButton: {fileID: 256137333}
-  buildingSiteAtlas: {fileID: 4343727234628468602, guid: 4387390ac9f601c489360e31adf7164f, type: 2}
   itemsAtlas: {fileID: 4343727234628468602, guid: 809d6a8720e8f364d86e8d443d1bc887, type: 2}
   wallsAtlas: {fileID: 4343727234628468602, guid: 5c0a5e99ce49ddb449d09f17306c780a, type: 2}
 --- !u!114 &727242733
@@ -1213,7 +1212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.47058824}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2101,7 +2100,7 @@ Transform:
   m_GameObject: {fileID: 1819266623}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25, y: 15, z: 0}
+  m_LocalPosition: {x: 25, y: 15, z: 10}
   m_LocalScale: {x: 4.2499995, y: 4.2499995, z: 4.2499995}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2141,7 +2140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7.5, y: 0}
+  m_AnchoredPosition: {x: 7.5, y: 0.0000076293945}
   m_SizeDelta: {x: -17.5, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1977784603
@@ -2343,7 +2342,7 @@ PrefabInstance:
       objectReference: {fileID: 727242725}
     - target: {fileID: 1714714636933857663, guid: cf0a54a5ad468c64fa9b17ebfef89a00, type: 3}
       propertyPath: m_PlaneDistance
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1835616313479408503, guid: cf0a54a5ad468c64fa9b17ebfef89a00, type: 3}
       propertyPath: m_Pivot.x

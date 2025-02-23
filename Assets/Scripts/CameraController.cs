@@ -10,12 +10,9 @@ public class CameraController : MonoBehaviour
     public float zoomSpeed = 0.01f;
     public float minZoom = 4f;
     public float maxZoom = 15f;
-    public float dragSpeed = 0.5f;
+    public float dragSpeed = 1f;
 
-    //public GameObject infoPanel;
     public Button changeSceneButton;
-    //public Button showInfoButton;
-    //public Button closeInfoButton;
     public GameObject infoCanvas;
     public Button openInfo;
     public Button closeInfo;
@@ -80,51 +77,73 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        HandleCameraMovement();
-        HandleCameraZoom();
-    }
-
-    private void HandleCameraMovement()
-    {
+#if UNITY_ANDROID || UNITY_IOS
         if (Input.touchCount == 1)
         {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
-            {
-                _isDragging = true;
-                _isDraggingFromUI = IsPointerOverUI();
-                _lastTouchPosition = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Moved && _isDragging && !_isDraggingFromUI)
-            {
-                Vector3 delta = Camera.main.ScreenToWorldPoint(touch.position) - Camera.main.ScreenToWorldPoint(_lastTouchPosition);
-                _lastTouchPosition = touch.position;
-
-                Vector3 newPosition = transform.position - delta * dragSpeed;
-                MoveCamera(newPosition);
-            }
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            {
-                _isDragging = false;
-            }
+            HandleCameraMovement();
         }
+        else if (Input.touchCount == 2)
+        {
+            HandleCameraZoom();
+        }
+#endif
 
-        if (Input.GetMouseButtonDown(0))
+#if UNITY_EDITOR || UNITY_STANDALONE
+        HandleMouseMovement();
+        HandleMouseZoom();
+#endif
+    }
+
+    private void HandleMouseMovement()
+    {
+        if (Input.GetMouseButtonDown(0)) // Левая кнопка мыши нажата
         {
             _isDragging = true;
             _isDraggingFromUI = IsPointerOverUI();
             _lastMousePosition = Input.mousePosition;
         }
-        if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButton(0) && _isDragging && !_isDraggingFromUI) // Двигаем, если удерживаем кнопку
+        {
+            Vector3 delta = (Vector3)((Vector2)(Input.mousePosition - _lastMousePosition) *
+                            (Camera.main.orthographicSize * 2f / Screen.height));
+            _lastMousePosition = Input.mousePosition;
+
+            Vector3 newPosition = transform.position - delta;
+            MoveCamera(newPosition);
+        }
+        else if (Input.GetMouseButtonUp(0)) // Отпустили кнопку — сбрасываем флаг
         {
             _isDragging = false;
         }
-        if (_isDragging && !_isDraggingFromUI)
-        {
-            Vector3 delta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.ScreenToWorldPoint(_lastMousePosition);
-            _lastMousePosition = Input.mousePosition;
+    }
 
-            Vector3 newPosition = transform.position - delta * dragSpeed;
+    private void HandleMouseZoom()
+    {
+        if (IsPointerOverUI()) return;
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (Mathf.Abs(scroll) > 0.01f) // Проверяем, есть ли прокрутка
+        {
+            AdjustZoom(scroll * 5f); // Убрали минус, теперь зум корректный
+        }
+    }
+
+
+    private void HandleCameraMovement()
+    {
+        Touch touch = Input.GetTouch(0);
+        if (touch.phase == TouchPhase.Began)
+        {
+            _isDragging = true;
+            _isDraggingFromUI = IsPointerOverUI();
+            _lastTouchPosition = touch.position;
+        }
+        else if (touch.phase == TouchPhase.Moved && _isDragging && !_isDraggingFromUI)
+        {
+            // Конвертируем пиксельное смещение в мировые координаты с учетом масштаба камеры
+            Vector3 delta = (Vector3)(touch.deltaPosition * (Camera.main.orthographicSize * 2f / Screen.height));
+            Vector3 newPosition = transform.position - delta;
+
             MoveCamera(newPosition);
         }
     }
@@ -143,23 +162,15 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        if (Input.touchCount == 2)
-        {
-            Touch touchZero = Input.GetTouch(0);
-            Touch touchOne = Input.GetTouch(1);
+        Touch touchZero = Input.GetTouch(0);
+        Touch touchOne = Input.GetTouch(1);
 
-            float prevMagnitude = (touchZero.position - touchZero.deltaPosition - (touchOne.position - touchOne.deltaPosition)).magnitude;
-            float currentMagnitude = (touchZero.position - touchOne.position).magnitude;
+        float prevMagnitude = (touchZero.position - touchZero.deltaPosition - (touchOne.position - touchOne.deltaPosition)).magnitude;
+        float currentMagnitude = (touchZero.position - touchOne.position).magnitude;
 
-            float difference = currentMagnitude - prevMagnitude;
+        float difference = currentMagnitude - prevMagnitude;
 
-            AdjustZoom(difference * zoomSpeed);
-        }
-        else
-        {
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-            AdjustZoom(scroll * 10);
-        }
+        AdjustZoom(difference * zoomSpeed);
     }
 
     private void AdjustZoom(float increment)
@@ -179,34 +190,6 @@ public class CameraController : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    /*private void ShowInfo()
-    {
-        infoPanel.SetActive(true);
-        FurniturePanel.SetActive(false);
-        showInfoButton.gameObject.SetActive(false);
-    }
-
-    private void CloseInfo()
-    {
-        infoPanel.SetActive(false);
-        showInfoButton.gameObject.SetActive(true);
-    }*/
-
-    // Метод для проверки, находится ли указатель мыши или пальца над UI элементом
-    private bool IsPointerOverUI()
-    {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            return true;
-        }
-
-        if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-        {
-            return true;
-        }
-
-        return false;
-    }
 
     void OnInfoButtonClicked()
     {
@@ -216,5 +199,24 @@ public class CameraController : MonoBehaviour
     void BackFromInfoButtonClicked()
     {
         infoCanvas.SetActive(false);
+    }
+
+    // Метод для проверки, находится ли указатель мыши или пальца над UI элементом
+    private bool IsPointerOverUI()
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return true;
+        }
+#endif
+
+#if UNITY_ANDROID || UNITY_IOS
+            if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        {
+            return true;
+        }
+#endif
+        return false;
     }
 }

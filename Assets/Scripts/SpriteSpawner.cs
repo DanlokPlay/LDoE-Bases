@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.UIElements;
 using static GameData;
 
 
 public class SpriteSpawner : MonoBehaviour
 {
     public SpriteAtlas groundsAtlas;
-    public SpriteAtlas buildingSiteAtlas;
+    public SpriteAtlas itemsAtlas;
 
     void Start()
     {
@@ -21,13 +22,13 @@ public class SpriteSpawner : MonoBehaviour
 
         PlaceFurniture();
 
-        SpawnChestHomeEnemy(4, 7, -2);
+        SpawnChestHomeEnemy(4, 7, 8);
 
         SpawnDragBoxObjects();
 
         if (MotorcycleDataProcessor.DataLoadedSuccessfully)
         {
-            SpawnMotorcycle(new Vector3(8, -2, -4));
+            SpawnMotorcycle(new Vector3(4, -2, 8));
         }
     }
 
@@ -56,7 +57,7 @@ public class SpriteSpawner : MonoBehaviour
                 Vector2[] spriteUV = grassSprite.uv;
 
                 // Смещаем координаты вершин в зависимости от позиции
-                Vector3 positionOffset = new Vector3(x, y, -1); // Смещение для текущей плитки
+                Vector3 positionOffset = new Vector3(x, y, 9); // Смещение для текущей плитки
 
                 // Добавляем вершины
                 for (int i = 0; i < spriteVertices.Length; i++)
@@ -140,7 +141,7 @@ public class SpriteSpawner : MonoBehaviour
             Vector2[] spriteUV = groundSprite.uv;
 
             // Смещаем координаты вершин в зависимости от позиции
-            Vector3 positionOffset = new Vector3(foundament.X, foundament.Y, -2); // Смещение для текущего фундамента
+            Vector3 positionOffset = new Vector3(foundament.X, foundament.Y, 8); // Смещение для текущего фундамента
 
             // Добавляем вершины
             for (int i = 0; i < spriteVertices.Length; i++)
@@ -216,17 +217,17 @@ public class SpriteSpawner : MonoBehaviour
                 // Определяем позицию и вращение в зависимости от координат
                 if (wall.X % 2 == 0)
                 {
-                    position = new Vector3(wall.X, wall.Y - 1, -4);
+                    position = new Vector3(wall.X, wall.Y - 1, 7);
                     rotation = Quaternion.identity;
                 }
                 else if (wall.Y % 2 == 0)
                 {
-                    position = new Vector3(wall.X - 1, wall.Y, -4);
+                    position = new Vector3(wall.X - 1, wall.Y, 7);
                     rotation = Quaternion.Euler(0, 0, 90);
                 }
                 else
                 {
-                    position = new Vector3(wall.X, wall.Y, -4);
+                    position = new Vector3(wall.X, wall.Y, 7);
                     rotation = Quaternion.identity;
                 }
 
@@ -262,10 +263,10 @@ public class SpriteSpawner : MonoBehaviour
     public void SpawnChestHomeEnemy(int x, int y, int z)
     {
         // Убедитесь, что атлас и спрайт загружены
-        if (buildingSiteAtlas == null) return;
+        if (itemsAtlas == null) return;
 
         // Извлекаем спрайт из атласа
-        Sprite chestHomeEnemySprite = buildingSiteAtlas.GetSprite("chest_home_enemy");
+        Sprite chestHomeEnemySprite = itemsAtlas.GetSprite("chest_home_enemy");
         if (chestHomeEnemySprite == null) return;
 
         // Создаем новый GameObject
@@ -290,18 +291,18 @@ public class SpriteSpawner : MonoBehaviour
     public void SpawnDragBoxObjects()
     {
         // Убедитесь, что атлас и спрайт загружены
-        if (buildingSiteAtlas == null) return;
+        if (itemsAtlas == null) return;
 
         foreach (var dragBoxObjectData in GameData.DragBoxObjects)
         {
             var position = new Vector3(
                 dragBoxObjectData.X + 17,
                 dragBoxObjectData.Z + 17,
-                -4
+                5
             );
 
             // Извлекаем спрайт из атласа
-            Sprite watchTowerGeneratorSprite = buildingSiteAtlas.GetSprite("watch_tower_generator");
+            Sprite watchTowerGeneratorSprite = itemsAtlas.GetSprite("watch_tower_generator");
             if (watchTowerGeneratorSprite == null) continue; // Пропустите итерацию, если спрайт не найден
 
             // Создаем новый GameObject
@@ -313,7 +314,7 @@ public class SpriteSpawner : MonoBehaviour
             spriteRenderer.sprite = watchTowerGeneratorSprite;
 
             // Устанавливаем масштаб для увеличения спрайта
-            dragBoxObject.transform.localScale = new Vector3(1.5f, 1.5f, 1f); // Увеличиваем размер спрайта
+            dragBoxObject.transform.localScale = new Vector3(1f, 1f, 1f); // Увеличиваем размер спрайта
 
             // Добавляем BoxCollider с стандартным размером
             var boxCollider = dragBoxObject.AddComponent<BoxCollider>(); // Стандартный размер (1, 1, 1)
@@ -330,10 +331,10 @@ public class SpriteSpawner : MonoBehaviour
     public void SpawnMotorcycle(Vector3 position)
     {
         // Убедитесь, что атлас и спрайт загружены
-        if (buildingSiteAtlas == null) return;
+        if (itemsAtlas == null) return;
 
         // Извлекаем спрайт из атласа
-        Sprite buildingSiteChopperSprite = buildingSiteAtlas.GetSprite("chopper");
+        Sprite buildingSiteChopperSprite = itemsAtlas.GetSprite("motorcycle");
         if (buildingSiteChopperSprite == null) return; // Пропускаем, если спрайт не найден
 
         // Создаем новый GameObject
@@ -345,7 +346,7 @@ public class SpriteSpawner : MonoBehaviour
         spriteRenderer.sprite = buildingSiteChopperSprite;
 
         // Устанавливаем масштаб для увеличения спрайта
-        motorcycle.transform.localScale = new Vector3(2.75f, 1.75f, 1f); // Увеличиваем размер спрайта
+        motorcycle.transform.localScale = new Vector3(2f, 2f, 1f); // Увеличиваем размер спрайта
 
         // Добавляем BoxCollider с стандартным размером
         var boxCollider = motorcycle.AddComponent<BoxCollider>(); // Стандартный размер (1, 1, 1)
@@ -376,24 +377,28 @@ public class SpriteSpawner : MonoBehaviour
 
         var rotationQuat = GetFurnitureRotation(descriptionId, rotation);
         var positionData = GetFurniturePosition(descriptionId, x, y, rotation);
-        var position = positionData.position;
-        var scale = positionData.scale;
 
-        var furnitureObject = new GameObject(descriptionId); // Создаем новый объект
+        // Получаем данные для мебели и фона
+        var positionFurniture = positionData.positionFurniture;
+        var scaleFurniture = positionData.scaleFurniture;
+
+        // Создаём объект для мебели
+        var furnitureObject = new GameObject(descriptionId);
         furnitureObject.isStatic = true;
         var spriteRenderer = furnitureObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
-        furnitureObject.transform.position = position;
+        furnitureObject.transform.position = positionFurniture; // Позиция мебели
         furnitureObject.transform.rotation = rotationQuat;
-        furnitureObject.transform.localScale = scale; // Устанавливаем масштаб
+        furnitureObject.transform.localScale = scaleFurniture; // Масштаб мебели
 
         // Добавляем BoxCollider для обработки нажатий
         var boxCollider = furnitureObject.AddComponent<BoxCollider>();
-        boxCollider.isTrigger = true; // Установите это значение, если хотите, чтобы коллайдер работал как триггер
+        boxCollider.isTrigger = true; // Устанавливаем это значение, если хотите, чтобы коллайдер работал как триггер
 
-        // Помещаем объект в контейнер
+        // Помещаем объект мебели в контейнер
         furnitureObject.transform.parent = container.transform;
 
+        // Добавляем компоненты для взаимодействия, если есть данные
         var furnitureData = GetFurnitureData(descriptionId, x, y, rotation);
         if (furnitureData != null)
         {
@@ -402,61 +407,66 @@ public class SpriteSpawner : MonoBehaviour
         }
     }
 
-    (Vector3 position, Vector3 scale) GetFurniturePosition(string descriptionId, int x, int y, int rotation)
+    (Vector3 positionFurniture, Vector3 scaleFurniture) GetFurniturePosition(string descriptionId, int x, int y, int rotation)
     {
-        Vector3 position;
-        Vector3 scale = new Vector3(1.75f, 1.75f, 1f); // Общий размер для всех спрайтов
+        Vector3 positionFurniture = new Vector3(x, y, 6);
+        Vector3 scaleFurniture = new Vector3(1.25f, 1.25f, 1f); // Общий размер для всех спрайтов
 
         switch (descriptionId)
         {
+            /*case var id when new[] { "turret_grade_1", "turret_grade_2", "turret_grade_3", "furniture_horsefeeder", "furniture_wiretrap", "buildingsite_radiotable", "furniture_shower", "workbench_smeltery_enemy", "workbench_alloy_smeltery_enemy" }.Contains(id):
+                scaleFurniture = new Vector3(1.5f, 1.5f, 1f);
+                break;
+            case var id when new[] { "workbench_medictable_enemy", "furniture_weapon_stand", "workbench_bench_enemy", "workbench_smeltery_enemy", "workbench_alloy_smeltery_enemy", "workbench_bonfire_enemy", "furniture_lamp", "workbench_meatdryer_enemy" }.Contains(id):
+                scaleFurniture = new Vector3(1.4f, 1.4f, 1f);
+                break;*/
+            case var id when new[] { "furniture_chest_4", "furniture_chest_8", "furniture_chest_16", "furniture_chest_24" }.Contains(id):
+                scaleFurniture = new Vector3(1.15f, 1.15f, 1f);
+                break;
             case "buildingsite_atv":
-                position = new Vector3(x + 2f, y + 2f, -3);
-                scale = new Vector3(5.75f, 5.75f, 1f); // Специальный размер, если нужно
+                positionFurniture = new Vector3(x + 2f, y + 2f, 6);
+                scaleFurniture = new Vector3(4.5f, 4.5f, 1f); // Специальный размер для фона
                 break;
             case "workbench_dog_enclosure_enemy":
-                position = new Vector3(x + 1f, y + 3f, -3);
-                scale = new Vector3(3.75f, 7.75f, 1f); // Специальный размер, если нужно
+                positionFurniture = new Vector3(x + 1f, y + 3f, 6);
+                scaleFurniture = new Vector3(2.5f, 6.5f, 1f);
                 break;
             case var id when new[] { "workbench_acid_bath_enemy", "workbench_gardenbed_enemy", "buildingsite_chopper", "buildingsite_acid_bath" }.Contains(id):
-                position = new Vector3(x + 1f, y + 1f, -3);
-                scale = new Vector3(3.75f, 3.75f, 1f); // Специальный размер, если нужно
+                positionFurniture = new Vector3(x + 1f, y + 1f, 6);
+                scaleFurniture = new Vector3(2.5f, 2.5f, 1f);
                 break;
             case var id when new[] { "workbench_gunsmith_enemy", "buildingsite_gunsmith" }.Contains(id):
                 switch (rotation)
                 {
                     case 0:
-                        position = new Vector3(x + 1f, y + 2f, -3);
-                        scale = new Vector3(3.75f, 1.75f, 1f);
+                        positionFurniture = new Vector3(x + 1f, y + 2f, 6);
+                        scaleFurniture = new Vector3(2.5f, 1.5f, 1f);
                         break;
                     case 1:
-                        position = new Vector3(x + 2f, y + 1f, -3);
-                        scale = new Vector3(3.75f, 1.75f, 1f);
+                        positionFurniture = new Vector3(x + 2f, y + 1f, 6);
+                        scaleFurniture = new Vector3(2.5f, 1.5f, 1f);
                         break;
                     case 2:
-                        position = new Vector3(x + 1f, y + 0f, -3);
-                        scale = new Vector3(3.75f, 1.75f, 1f);
+                        positionFurniture = new Vector3(x + 1f, y + 0f, 6);
+                        scaleFurniture = new Vector3(2.5f, 1.5f, 1f);
                         break;
                     case 3:
-                        position = new Vector3(x + 0f, y + 1f, -3);
-                        scale = new Vector3(3.75f, 1.75f, 1f);
+                        positionFurniture = new Vector3(x + 0f, y + 1f, 6);
+                        scaleFurniture = new Vector3(2.5f, 1.5f, 1f);
                         break;
                     default:
-                        position = new Vector3(x + 1f, y + 1f, -3);
+                        positionFurniture = new Vector3(x + 1f, y + 1f, 6);
                         break;
                 }
                 break;
-            default:
-                position = new Vector3(x, y, -3);
-                break;
         }
-
-        return (position, scale); // Возвращаем позицию и масштаб
+        return (positionFurniture, scaleFurniture);
     }
 
     Sprite GetFurnitureSprite(string descriptionId)
     {
         // Получаем спрайт из атласа
-        return buildingSiteAtlas.GetSprite(descriptionId);
+        return itemsAtlas.GetSprite(descriptionId);
     }
 
     Quaternion GetFurnitureRotation(string descriptionId, int rotation)
