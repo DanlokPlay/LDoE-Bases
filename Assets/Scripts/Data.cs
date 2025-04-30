@@ -103,7 +103,6 @@ public static class GameData
 public static class Data
 {
     public static string CurrentLanguage = "ru"; // Значение по умолчанию - русский
-    public static string LastBaseName = ""; // Последнее введённое название базы
 
     private static readonly string filePath = Path.Combine(Application.persistentDataPath, "Data.json");
 
@@ -120,9 +119,6 @@ public static class Data
                 {
                     if (!string.IsNullOrEmpty(dataSave.CurrentLanguage))
                         CurrentLanguage = dataSave.CurrentLanguage;
-
-                    if (!string.IsNullOrEmpty(dataSave.LastBaseName))
-                        LastBaseName = dataSave.LastBaseName;
                 }
             }
         }
@@ -137,8 +133,7 @@ public static class Data
     {
         DataSave dataSave = new DataSave
         {
-            CurrentLanguage = CurrentLanguage,
-            LastBaseName = LastBaseName
+            CurrentLanguage = CurrentLanguage
         };
 
         string jsonContent = JsonUtility.ToJson(dataSave);

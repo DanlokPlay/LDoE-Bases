@@ -27,6 +27,9 @@ public class FileSearchManager : MonoBehaviour
     public Button aboutButton;
     public Button closeAboutButton;
     public Button exitButton;
+    public GameObject UpdateInformationCanvas;
+    /*public Button updateButton;
+    public Button closeUpdateButton;*/
 
     public GameObject loadingScreen;
     public Slider progressBar;
@@ -72,10 +75,13 @@ public class FileSearchManager : MonoBehaviour
         faqButton.onClick.AddListener(OnFaqButtonClicked);
         closeFaqButton.onClick.AddListener(OnCloseFaqButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
+        /*pdateButton.onClick.AddListener(OnUpdateButtonClicked);
+        closeUpdateButton.onClick.AddListener(OnCloseUpdateButtonClicked);*/
 
         infoCanvas.SetActive(false);
         aboutCanvas.SetActive(false);
         faqCanvas.SetActive(false);
+        UpdateInformationCanvas.SetActive(false);
         noResultsText.gameObject.SetActive(false);
 
         exitConfirmation = FindFirstObjectByType<ExitConfirmation>();
@@ -134,14 +140,6 @@ public class FileSearchManager : MonoBehaviour
     }
 
     void OnApplicationPause(bool pause)
-    {
-        if (pause)
-        {
-            FixInputField();
-        }
-    }
-
-    private void FixInputField()
     {
         fileNameInputField.DeactivateInputField();
     }
@@ -501,4 +499,16 @@ public class FileSearchManager : MonoBehaviour
         faqCanvas.SetActive(false);
         mainCanvas.SetActive(true);
     }
+/*
+    void OnUpdateButtonClicked()
+    {
+        mainCanvas.SetActive(false);
+        UpdateInformationCanvas.SetActive(false);
+    }
+
+    void OnCloseUpdateButtonClicked()
+    {
+        UpdateInformationCanvas.SetActive(false);
+        mainCanvas.SetActive(true);
+    }*/
 }

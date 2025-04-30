@@ -72,6 +72,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 530e5158e17bb4f4c8a4c39498728b23, type: 3}
     - {fileID: 2800000, guid: 189f3411d8dd4ca40987a23093fd05e4, type: 3}
     - {fileID: 2800000, guid: ac736008211677140983bc08283242f2, type: 3}
+    - {fileID: 2800000, guid: 510f4dc6d73eb36459eec80362be8349, type: 3}
     - {fileID: 2800000, guid: 5f56a3b21d227224793d36c254b32f8a, type: 3}
     - {fileID: 2800000, guid: 8ed2def567d95ad41bdd05ee70574201, type: 3}
     - {fileID: 2800000, guid: cb01da9c6698d3f4f8d0e4eb4d2d8408, type: 3}
@@ -393,6 +394,7 @@ SpriteAtlas:
     - 95e2d6b6599b9244282cf6c29f7e1697: 21300000
     - afc027b6c293c134a9db5707d5479e1a: 21300000
     - a08963c654ee9444ca91678789938d12: 21300000
+    - 510f4dc6d73eb36459eec80362be8349: 21300000
     - 3d50cdd65e0369e41aa5938cd4b4af92: 21300000
     - d62f01e679e6bc848b8dd90ddf50ed51: 21300000
     - 43a954e62c838f54ebbea1c991b749d2: 21300000
@@ -641,6 +643,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 95e2d6b6599b9244282cf6c29f7e1697, type: 3}
   - {fileID: 21300000, guid: afc027b6c293c134a9db5707d5479e1a, type: 3}
   - {fileID: 21300000, guid: a08963c654ee9444ca91678789938d12, type: 3}
+  - {fileID: 21300000, guid: 510f4dc6d73eb36459eec80362be8349, type: 3}
   - {fileID: 21300000, guid: 3d50cdd65e0369e41aa5938cd4b4af92, type: 3}
   - {fileID: 21300000, guid: d62f01e679e6bc848b8dd90ddf50ed51, type: 3}
   - {fileID: 21300000, guid: 43a954e62c838f54ebbea1c991b749d2, type: 3}
@@ -888,6 +891,7 @@ SpriteAtlas:
   - furniture_rag
   - simple_boots
   - resource_aluminium_wire
+  - buildingsite_dog_enclosure_enemy
   - duct_tape
   - resource_bar_2
   - workbench_sawmill
