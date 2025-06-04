@@ -27,6 +27,8 @@ public class ExitConfirmation : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Application.targetFrameRate = 60;
+            QualitySettings.vSyncCount = 0;
         }
     }
 

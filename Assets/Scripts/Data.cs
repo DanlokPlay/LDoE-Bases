@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -102,11 +102,13 @@ public static class GameData
 
 public static class Data
 {
-    public static string CurrentLanguage = "ru"; // Значение по умолчанию - русский
+    public static string CurrentLanguage = "ru";
+    public static string BasesVersion = "bases_1_16_3";
+
+    public static List<string> RecentBaseNames = new List<string>(); // РҐСЂР°РЅРёРј РїРѕСЃР»РµРґРЅРёРµ Р±Р°Р·С‹ (РґРѕ 30)
 
     private static readonly string filePath = Path.Combine(Application.persistentDataPath, "Data.json");
 
-    // Метод для загрузки данных
     public static void LoadData()
     {
         if (File.Exists(filePath))
@@ -119,32 +121,39 @@ public static class Data
                 {
                     if (!string.IsNullOrEmpty(dataSave.CurrentLanguage))
                         CurrentLanguage = dataSave.CurrentLanguage;
+
+                    if (!string.IsNullOrEmpty(dataSave.BasesVersion))
+                        BasesVersion = dataSave.BasesVersion;
+
+                    if (dataSave.RecentBaseNames != null)
+                        RecentBaseNames = dataSave.RecentBaseNames;
                 }
             }
         }
         else
         {
-            SaveData(); // Если файла нет, создаём его с дефолтными значениями
+            SaveData();
         }
     }
 
-    // Метод для сохранения данных
     public static void SaveData()
     {
         DataSave dataSave = new DataSave
         {
-            CurrentLanguage = CurrentLanguage
+            CurrentLanguage = CurrentLanguage,
+            BasesVersion = BasesVersion,
+            RecentBaseNames = RecentBaseNames
         };
 
         string jsonContent = JsonUtility.ToJson(dataSave);
         File.WriteAllText(filePath, jsonContent);
     }
 
-    // Класс для сохранения данных
     [System.Serializable]
     public class DataSave
     {
         public string CurrentLanguage;
-        public string LastBaseName;
+        public string BasesVersion;
+        public List<string> RecentBaseNames;
     }
 }

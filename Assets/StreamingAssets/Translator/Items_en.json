@@ -194,6 +194,7 @@
 "workbench_watercatcher":"Rain Catcher",
 "workbench_smeltery_enemy":"Melting Furnace",
 "workbench_smeltery":"Melting Furnace",
+"buildingsite_dog_enclosure":"Dog Crate (Not assembled)",
 "buildingsite_dog_enclosure_enemy":"Dog Crate (Not assembled)",
 "workbench_dog_enclosure_enemy":"Dog Crate",
 "workbench_dog_enclosure":"Dog Crate",
@@ -282,7 +283,7 @@
 "resource_nails":"Nails",
 "resource_bar_1":"Iron Bar",
 "resource_bar_2":"Steel Bar",
-"resource_bauxite":"Bauxite",
+"resource_bauxite":"Aluminium ore",
 "resource_hide":"Animal Rawhide",
 
 "gas_mask":"Gas Mask",

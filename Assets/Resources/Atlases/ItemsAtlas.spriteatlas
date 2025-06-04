@@ -73,6 +73,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 189f3411d8dd4ca40987a23093fd05e4, type: 3}
     - {fileID: 2800000, guid: ac736008211677140983bc08283242f2, type: 3}
     - {fileID: 2800000, guid: 510f4dc6d73eb36459eec80362be8349, type: 3}
+    - {fileID: 2800000, guid: 0dcd7e242b5f6714299e7ddd0c1031b6, type: 3}
     - {fileID: 2800000, guid: 5f56a3b21d227224793d36c254b32f8a, type: 3}
     - {fileID: 2800000, guid: 8ed2def567d95ad41bdd05ee70574201, type: 3}
     - {fileID: 2800000, guid: cb01da9c6698d3f4f8d0e4eb4d2d8408, type: 3}
@@ -118,7 +119,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 1e7cb28fb2b15904d91852a22111f119, type: 3}
     - {fileID: 2800000, guid: 115f7c949a349e7478c04b6a80ec6925, type: 3}
     - {fileID: 2800000, guid: 180bda4530222cf4f8cbfab63c0f0163, type: 3}
-    - {fileID: 2800000, guid: 26fe03ee62337494ea246dc9336ed585, type: 3}
+    - {fileID: 2800000, guid: b1ba82cf4b00daa478dd5e996a467515, type: 3}
     - {fileID: 2800000, guid: b08093df92767554b9dad9fba0b72538, type: 3}
     - {fileID: 2800000, guid: 95e2d6b6599b9244282cf6c29f7e1697, type: 3}
     - {fileID: 2800000, guid: 5c80311dc3ba44f4f96c0471e0fb664e, type: 3}
@@ -350,6 +351,7 @@ SpriteAtlas:
     - 6de7780424dc3b84691774f8df834b7e: 21300000
     - 74fc6a142b96a21428f25547c81f6373: 21300000
     - 2032bb141b45cc2459a8bd2a9ac47c23: 21300000
+    - 0dcd7e242b5f6714299e7ddd0c1031b6: 21300000
     - 004bed3458b0a134ebbdffc1449ffbf5: 21300000
     - 94b6996445d23bd419f5990220b4baea: 21300000
     - a2694a740bec9e545affd762bedd0b28: 21300000
@@ -523,7 +525,6 @@ SpriteAtlas:
     - c8311e8ebe385664f94678d51f54ff45: 21300000
     - 48bb3fae428cdb742abe974392d655bc: 21300000
     - ee83a9de2160d6043b7096330c87319c: 21300000
-    - 26fe03ee62337494ea246dc9336ed585: 21300000
     - fa1f8aeee9931e741b452f962a038ed6: 21300000
     - 11fd0dee1b220ea4bb8ab47c1ac65322: 21300000
     - 0e1ee4fe6f98ca949a77f857e38b93bd: 21300000
@@ -539,6 +540,7 @@ SpriteAtlas:
     - 4233d3aff4495004880666ec530e8bb7: 21300000
     - d55fbbaf5d92d664189ee6f77065c8a1: 21300000
     - 104c67bf29e995645a1fc728ae63cdd0: 21300000
+    - b1ba82cf4b00daa478dd5e996a467515: 21300000
     - 0f278bcf9d0288c4cb7c31530e16e033: 21300000
     - b08093df92767554b9dad9fba0b72538: 21300000
     - 59f5f1ff8f6ab244aad923c61f07fbdf: 21300000
@@ -599,6 +601,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6de7780424dc3b84691774f8df834b7e, type: 3}
   - {fileID: 21300000, guid: 74fc6a142b96a21428f25547c81f6373, type: 3}
   - {fileID: 21300000, guid: 2032bb141b45cc2459a8bd2a9ac47c23, type: 3}
+  - {fileID: 21300000, guid: 0dcd7e242b5f6714299e7ddd0c1031b6, type: 3}
   - {fileID: 21300000, guid: 004bed3458b0a134ebbdffc1449ffbf5, type: 3}
   - {fileID: 21300000, guid: 94b6996445d23bd419f5990220b4baea, type: 3}
   - {fileID: 21300000, guid: a2694a740bec9e545affd762bedd0b28, type: 3}
@@ -772,7 +775,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c8311e8ebe385664f94678d51f54ff45, type: 3}
   - {fileID: 21300000, guid: 48bb3fae428cdb742abe974392d655bc, type: 3}
   - {fileID: 21300000, guid: ee83a9de2160d6043b7096330c87319c, type: 3}
-  - {fileID: 21300000, guid: 26fe03ee62337494ea246dc9336ed585, type: 3}
   - {fileID: 21300000, guid: fa1f8aeee9931e741b452f962a038ed6, type: 3}
   - {fileID: 21300000, guid: 11fd0dee1b220ea4bb8ab47c1ac65322, type: 3}
   - {fileID: 21300000, guid: 0e1ee4fe6f98ca949a77f857e38b93bd, type: 3}
@@ -788,6 +790,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4233d3aff4495004880666ec530e8bb7, type: 3}
   - {fileID: 21300000, guid: d55fbbaf5d92d664189ee6f77065c8a1, type: 3}
   - {fileID: 21300000, guid: 104c67bf29e995645a1fc728ae63cdd0, type: 3}
+  - {fileID: 21300000, guid: b1ba82cf4b00daa478dd5e996a467515, type: 3}
   - {fileID: 21300000, guid: 0f278bcf9d0288c4cb7c31530e16e033, type: 3}
   - {fileID: 21300000, guid: b08093df92767554b9dad9fba0b72538, type: 3}
   - {fileID: 21300000, guid: 59f5f1ff8f6ab244aad923c61f07fbdf, type: 3}
@@ -847,6 +850,7 @@ SpriteAtlas:
   - thick_hat
   - workbench_smeltery
   - resource_weapon_oil
+  - buildingsite_dog_enclosure_enemy
   - watch_tower_generator
   - paint_red
   - carrot
@@ -891,7 +895,7 @@ SpriteAtlas:
   - furniture_rag
   - simple_boots
   - resource_aluminium_wire
-  - buildingsite_dog_enclosure_enemy
+  - buildingsite_dog_enclosure
   - duct_tape
   - resource_bar_2
   - workbench_sawmill
@@ -1020,7 +1024,6 @@ SpriteAtlas:
   - pass_card_d
   - furniture_trophy_witch
   - bunker_coupon_hard
-  - furniture_military_chest_24
   - thick_hat_fortified
   - atv_gastank
   - pass_card_z
@@ -1036,6 +1039,7 @@ SpriteAtlas:
   - workbench_gunsmith
   - bikepattern_default
   - stone
+  - furniture_military_chest_24
   - thick_boots_fortified
   - furniture_plant
   - sledgehammer

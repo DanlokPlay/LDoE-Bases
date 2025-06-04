@@ -133,7 +133,9 @@ public class FurniturePanel : MonoBehaviour
         }
 
         // Перевод для текста поворота
-        rotationText.text = $"{LocalizationManager.GetText("rotation")}: {furnitureData.Rotation}";
+        string rotationKey = $"rotation_{furnitureData.Rotation}";
+        string rotationValue = LocalizationManager.GetText(rotationKey);
+        rotationText.text = $"{LocalizationManager.GetText("rotation")}: {rotationValue}";
 
         // Загрузка спрайта из атласа
         Sprite descriptionSprite = itemsAtlas.GetSprite(furnitureData.DescriptionId);

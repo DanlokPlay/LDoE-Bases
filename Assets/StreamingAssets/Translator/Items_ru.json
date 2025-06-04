@@ -194,6 +194,7 @@
 "workbench_watercatcher":"Водосборник",
 "workbench_smeltery_enemy":"Плавильня",
 "workbench_smeltery":"Плавильня",
+"buildingsite_dog_enclosure":"Вольер (Не собрано)",
 "buildingsite_dog_enclosure_enemy":"Вольер (Не собрано)",
 "workbench_dog_enclosure_enemy":"Вольер",
 "workbench_dog_enclosure":"Вольер",
@@ -282,7 +283,7 @@
 "resource_nails":"Гвозди",
 "resource_bar_1":"Железный слиток",
 "resource_bar_2":"Стальной слиток",
-"resource_bauxite":"Боксит",
+"resource_bauxite":"Алюминиевая руда",
 "resource_hide":"Шкура животного",
 
 "gas_mask":"Противогаз",
